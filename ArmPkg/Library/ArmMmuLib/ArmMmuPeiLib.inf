@@ -20,7 +20,8 @@
   ArmMmuLibInternal.h
   AArch64/ArmMmuLibCore.c
   AArch64/ArmMmuPeiLibConstructor.c
-  AArch64/ArmMmuLibReplaceEntry.S
+  AArch64/ArmMmuLibReplaceEntry.S       | GCC
+  AArch64/ArmMmuLibReplaceEntry.masm    | MSFT
 
 [Packages]
   ArmPkg/ArmPkg.dec
