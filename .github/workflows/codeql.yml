@@ -84,7 +84,7 @@ jobs:
       matrix:
         package: ${{ fromJson(needs.gather_packages.outputs.packages) }}
         include:
-          - archs: IA32,X64
+          - archs: ARM,AARCH64
           - tool_chain_tag: VS2022
 
     steps:
