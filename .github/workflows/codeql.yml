@@ -26,10 +26,12 @@ on:
     branches:
       - main
       - release/*
+      - test_*
   pull_request_target:
     branches:
       - main
       - release/*
+      - test_*
     paths-ignore:
       - '!**.c'
       - '!**.h'
