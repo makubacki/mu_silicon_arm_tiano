@@ -289,7 +289,24 @@ jobs:
         retention-days: 14
         if-no-files-found: warn
 
+    - name: Check if CodeQL SARIF File Exists
+      id: check_sarif_exists
+      env:
+        SARIF_NAME: ${{ steps.env_data.outputs.sarif_file_path }}
+      shell: python
+      run: |
+        import os
+        from pathlib import Path
+
+        sarif_exists = 'false'
+        if Path(os.environ['SARIF_NAME']).is_file():
+            sarif_exists = 'true'
+
+        with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
+            print(f'sarif_file_exists={sarif_exists}', file=fh)
+
     - name: Upload CodeQL Results (SARIF) To GitHub Code Scanning
+      if: steps.check_sarif_exists.outputs.sarif_file_exists == 'true'
       uses: github/codeql-action/upload-sarif@v2
       with:
         # Path to SARIF file relative to the root of the repository.
